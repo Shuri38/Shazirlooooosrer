@@ -1,0 +1,14 @@
+FROM python:3.12
+
+WORKDIR /code
+
+# Copier le fichier requirements.txt depuis le répertoire parent
+COPY ./django-site/webdev /code/django-site/webdev 
+
+# Installer les dépendances
+RUN pip install -r /code/django-site/webdev/api/requirements.txt
+
+EXPOSE 8001
+
+# Exécuter le serveur pour l'application publique
+CMD ["python", "./django-site/webdev/manage.py", "runserver", "0.0.0.0:8001"]
