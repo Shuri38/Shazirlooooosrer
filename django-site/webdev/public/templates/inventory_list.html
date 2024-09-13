@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Inventaires</title>
+    <style>
+        /* Mise en page de base */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Conteneur principal */
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        /* Titre principal */
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #0056b3;
+        }
+
+        /* Liste des inventaires */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #0056b3;
+            font-weight: bold;
+        }
+
+        ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* URL directe */
+        .direct-url {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Boutons de navigation */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #0056b3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container a:hover {
+            background-color: #004494;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            ul li {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .direct-url {
+                margin-top: 5px;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .button-container a {
+                margin-bottom: 10px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Liste des Inventaires</h1>
+        <ul>
+            {% for inventory in inventories %}
+                <li>
+                    <a href="{% url 'weapon_list' inventory.id %}">
+                        Inventaire de {{ inventory.user.username }}
+                    </a>
+                    <span class="direct-url">(URL directe : http://127.0.0.1/inventory/{{ inventory.id }}/)</span>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Boutons pour ajouter des éléments -->
+        <div class="button-container">
+            <a href="http://127.0.0.1/inventories/create/">Créer un nouvel Inventaire</a>
+            <a href="http://127.0.0.1/weapons/create/">Créer une nouvelle Arme</a>
+            <a href="http://127.0.0.1/skins/create/">Créer un nouveau Skin</a>
+        </div>
+    </div>
+</body>
+</html>

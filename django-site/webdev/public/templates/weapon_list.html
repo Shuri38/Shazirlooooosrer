@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armes de {{ inventory.user.username }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+
+        span {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            background-color: #2980b9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Armes de l'inventaire de {{ inventory.user.username }}</h1>
+        <ul>
+            {% for weapon in weapons %}
+                <li>
+                    <a href="{% url 'skin_list' weapon.id %}">
+                        {{ weapon.name }} - {{ weapon.weapon_type }} (Dégâts: {{ weapon.damage }})
+                    </a>
+                    <span>URL directe : http://127.0.0.1/weapon/{{ weapon.id }}/</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'inventory_list' %}" class="back-link">Retour à la liste des inventaires</a>
+    </div>
+</body>
+</html>
