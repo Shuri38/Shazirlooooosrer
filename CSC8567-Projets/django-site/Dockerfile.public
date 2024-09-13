@@ -3,7 +3,8 @@ FROM python:3.12
 WORKDIR /code
 
 # Copier le fichier requirements.txt depuis le répertoire parent
-COPY ./django-site /code/django-site 
+COPY ./django-site/ /code/django-site/
+
 
 # Installer les dépendances
 RUN pip install -r /code/django-site/webdev/public/requirements.txt
